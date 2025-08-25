@@ -31,4 +31,7 @@ public class Query {
 
 	// Ward Related Query
 	public static String addNewWard = "{call saveward(?,?,?)}";
+
+	// Aminity Related Query
+	public static String addNewAminity = "insert into aminities values('0',?)";
 }

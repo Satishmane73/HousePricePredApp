@@ -11,7 +11,7 @@ import com.techhub.model.DistModel;
 
 import customeException.StateNotFoundException;
 
-public class DistRepositoryImpl extends DBstate implements DistRepository {
+public class DistRepositoryImpl extends DBState implements DistRepository {
 
 	// this method for save a specific only one district at time in database
 

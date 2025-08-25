@@ -7,10 +7,6 @@ import org.apache.log4j.*;
 
 public class ClientApp {
 	static int count;
-	static Logger logger = Logger.getLogger(ClientApp.class);
-	static {
-		PropertyConfigurator.configure("D:\\Project\\HousePrisePredApp\\src\\main\\resources\\application.properties");
-	}
 
 	public static void main(String[] args) {
 		Scanner scr = new Scanner(System.in);
@@ -26,6 +22,8 @@ public class ClientApp {
 
 		WardModel wardModel;
 		WardService wardService = new WardServiceImpl();
+
+		AminityService AminityService = new AminityServiceImpl();
 
 		boolean flag = true;
 
@@ -385,6 +383,14 @@ public class ClientApp {
 					switch (ch) {
 					case 1:
 						System.out.println("Enter new Aminity Name");
+						scr.nextLine();
+						String aminityName = scr.nextLine();
+						AminityModel aminityModel = new AminityModel(0, aminityName);
+						b = AminityService.isAddNewAminity(aminityModel);
+						if (b)
+							System.out.println("New Aminity added Succesfully....");
+						else
+							System.out.println("Something went wrong");
 
 						break;
 					}

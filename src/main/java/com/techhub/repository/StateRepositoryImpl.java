@@ -7,7 +7,7 @@ import com.techhub.model.StateModel;
 
 import customeException.StateNotFoundException;
 
-public class StateRepositoryImpl extends DBstate implements StateRepository {
+public class StateRepositoryImpl extends DBState implements StateRepository {
 
 	@Override
 	public boolean isAddnewState(StateModel model) {

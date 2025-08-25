@@ -3,7 +3,7 @@ package com.techhub.repository;
 import com.techhub.model.*;
 import com.techhub.service.*;
 
-public class WardRepositoryImpl extends DBstate implements WardRepository {
+public class WardRepositoryImpl extends DBState implements WardRepository {
 
 	@Override
 	public boolean isAddNewWard(WardModel wardModel, int cityId) {

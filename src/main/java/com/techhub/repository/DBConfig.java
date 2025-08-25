@@ -15,14 +15,6 @@ public class DBConfig {
 	protected static CallableStatement cstmt;
 	private static DBConfig db;
 
-	private static Logger loger = Logger.getLogger(DBConfig.class);
-
-	static {
-		SimpleLayout layout = new SimpleLayout();
-		ConsoleAppender appender = new ConsoleAppender(layout);
-		loger.addAppender(appender);
-	}
-
 	private DBConfig() {
 		try {
 			File f = new File("");
@@ -38,10 +30,6 @@ public class DBConfig {
 			Class.forName(driver);
 
 			conn = DriverManager.getConnection(url, user, pass);
-			if (conn != null)
-				loger.info("Database Is Connected");
-			else
-				loger.info("Databbase Connection Failed");
 
 		} catch (Exception e) {
 			System.out.println(e);

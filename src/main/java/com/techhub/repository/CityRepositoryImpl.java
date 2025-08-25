@@ -3,7 +3,7 @@ package com.techhub.repository;
 import com.techhub.model.CityModel;
 import com.techhub.service.*;
 
-public class CityRepositoryImpl extends DBstate implements CityRepository {
+public class CityRepositoryImpl extends DBState implements CityRepository {
 
 	DistService distService = new DistServiceImpl();
 	StateService stateService = new StateServiceImpl();
