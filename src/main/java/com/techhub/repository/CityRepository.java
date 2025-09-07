@@ -1,9 +1,14 @@
 package com.techhub.repository;
 
+import java.util.List;
+
 import com.techhub.model.CityModel;
 
 public interface CityRepository {
-	public boolean isAddNewCity(CityModel model);
 
-	public int getCityidByCityName(String cityName);
+	boolean isAddNewCity(CityModel model);
+
+	int getCityidByCityName(String cityName);
+
+	List<CityModel> getCitiesFromDist(String stateName, String distName);
 }

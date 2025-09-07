@@ -1,10 +1,14 @@
 package com.techhub.service;
 
+import java.util.List;
+
 import com.techhub.model.CityModel;
 
 public interface CityService {
 
-	public boolean isAddNewCity(CityModel model);
+	boolean isAddNewCity(CityModel model);
 
-	public int getCityidByCityName(String cityName);
+	int getCityidByCityName(String cityName);
+
+	List<CityModel> getCitiesFromDist(String stateName, String distName);
 }

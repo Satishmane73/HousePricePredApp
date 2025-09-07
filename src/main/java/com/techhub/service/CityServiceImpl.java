@@ -1,5 +1,7 @@
 package com.techhub.service;
 
+import java.util.List;
+
 import com.techhub.model.CityModel;
 import com.techhub.repository.*;
 
@@ -19,4 +21,9 @@ public class CityServiceImpl implements CityService {
 		return cityRepo.getCityidByCityName(cityName);
 	}
 
+	@Override
+	public List<CityModel> getCitiesFromDist(String stateName, String distName) {
+		// TODO Auto-generated method stub
+		return cityRepo.getCitiesFromDist(stateName, distName);
+	}
 }

@@ -34,6 +34,7 @@ public class ClientApp {
 			System.out.println("City related services press : 3");
 			System.out.println("Ward related services press : 4");
 			System.out.println("Aminity related services press : 5");
+			System.out.println("Property related services press : 6");
 			System.out.println("For exit press : 9");
 			System.out.println();
 			System.out.println("Enter Your Choice");
@@ -138,7 +139,7 @@ public class ClientApp {
 				} while (exit);
 				break;
 
-// District =====================================================================================================
+// District ===================================================================================================
 			// This case for all District Related Services
 			case 2:
 				exit = true;
@@ -256,7 +257,7 @@ public class ClientApp {
 				} while (exit);
 				break;
 
-// City ==========================================================================================================
+// City ========================================================================================================
 			// This Case for all City Related Services
 			case 3:
 				exit = true;
@@ -312,7 +313,7 @@ public class ClientApp {
 
 				} while (exit);
 				break;
-// Ward ===========================================================================================================
+// Ward ========================================================================================================
 			// This case for all ward related Services
 			case 4:
 				exit = true;
@@ -362,9 +363,9 @@ public class ClientApp {
 				} while (exit);
 				break;
 
-//Amenities
+//Amenities ==================================================================================================
 			case 5:
-				exit = false;
+				exit = true;
 				do {
 					System.out.println();
 					System.out.println("1 : Add new aminity");
@@ -393,13 +394,82 @@ public class ClientApp {
 							System.out.println("Something went wrong");
 
 						break;
+					case 9:
+						exit = false;
+						break;
+					default:
+						System.out.println("Wrong Input");
+						break;
 					}
 				} while (exit);
 				break;
+
+//Property =====================================================================================================
+			case 6:
+				exit = true;
+				do {
+					System.out.println();
+					System.out.println("1 : Add new Property");
+					System.out.println("9 : Exit");
+					System.out.println("Enter your choice");
+					System.out.println();
+					int ch;
+					while (true) {
+						try {
+							ch = scr.nextInt();
+							break;
+						} catch (InputMismatchException ime) {
+							System.out.println("Please enter a valid input");
+							scr.next();
+						}
+					}
+					switch (ch) {
+					case 1:
+						System.out.println();
+						List<StateModel> stateList = stateService.getAllStates();
+						if (stateList != null) {
+							stateList.forEach((s) -> System.out.println(s.getStateId() + "\t" + s.getStateName()));
+						} else {
+							System.out.println("There is no data");
+						}
+						System.out.println("Enter state name to add property");
+						scr.nextLine();
+						String stateName = scr.nextLine();
+						List<DistModel> distList = distService.getDistListByStateName(stateName);
+						if (distList != null) {
+							distList.forEach((d) -> System.out.println(d.getDistId() + "\t" + d.getDistName()));
+						} else {
+							System.out.println("There is no data");
+						}
+						
+						
+						System.out.println("Enter Dist name to add property");
+						String distName = scr.nextLine();
+						List<CityModel> cityList = cityService.getCitiesFromDist(stateName, distName);
+						if (cityList != null)
+							cityList.forEach((c) -> System.out.println(c.getCityId() + "\t" + c.getCityName()));
+						else
+							System.out.println("There is no data");
+						
+						
+						System.out.println("Enter city name to add property");
+						String cityName = scr.nextLine();
+						List<WardModel> wardList = wardService.getAllWardByCityName(cityName);
+						if (wardList != null)
+							wardList.forEach((w) -> System.out.println(w.getWardName()));
+						else
+							System.out.println("There is no data");
+						break;
+					case 9:
+						exit = false;
+						break;
+					}
+				} while (exit);
+				break;
+
 			case 9:
 				scr.close();
 				flag = false;
-
 				break;
 
 			default:

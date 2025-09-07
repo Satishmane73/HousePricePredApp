@@ -4,5 +4,5 @@ import com.techhub.model.AminityModel;
 
 public interface AminityRepository {
 
-	public boolean isAddNewAminity(AminityModel model);
+	boolean isAddNewAminity(AminityModel model);
 }

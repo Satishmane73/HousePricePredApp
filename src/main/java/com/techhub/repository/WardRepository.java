@@ -1,7 +1,14 @@
 package com.techhub.repository;
 
+import java.util.List;
+
 import com.techhub.model.*;
 
 public interface WardRepository {
-	public boolean isAddNewWard(WardModel wardModel, int cityId);
+	boolean isAddNewWard(WardModel wardModel, int cityId);
+
+	List<WardModel> getAllWardByCityName(String cityName);
+
+	int getWardIdByName(String wardName);
+
 }

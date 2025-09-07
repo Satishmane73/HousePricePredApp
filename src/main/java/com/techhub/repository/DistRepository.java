@@ -8,13 +8,13 @@ import com.techhub.model.DistModel;
 
 public interface DistRepository {
 
-	public boolean isAddNewDist(String stateName, String distName);
+	boolean isAddNewDist(String stateName, String distName);
 
-	public boolean isAddBulkDist(String stateName);
+	boolean isAddBulkDist(String stateName);
 
-	public List<DistModel> getDistListByStateName(String stateName);
+	List<DistModel> getDistListByStateName(String stateName);
 
-	public int getDistIdByDistName(String distName);
+	int getDistIdByDistName(String distName);
 
-	public int getDistIdByCityName(String cityName);
+	int getDistIdByCityName(String cityName);
 }

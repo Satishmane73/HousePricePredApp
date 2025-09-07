@@ -10,7 +10,7 @@ public class AminityRepositoryImpl extends DBState implements AminityRepository 
 	@Override
 	public boolean isAddNewAminity(AminityModel model) {
 		try {
-			stmt = conn.prepareStatement("insert into aminities values('0',?)");
+			stmt = conn.prepareStatement(Query.addNewAminity);
 			stmt.setString(1, model.getAminity_Name());
 			int value = stmt.executeUpdate();
 			return value > 0 ? true : false;

@@ -5,18 +5,18 @@ import java.util.*;
 import com.techhub.model.StateModel;
 
 public interface StateRepository {
-	public boolean isAddnewState(StateModel model);
+	boolean isAddnewState(StateModel model);
 
-	public List<StateModel> getAllStates();
+	List<StateModel> getAllStates();
 
-	public StateModel getStateByName(String stateName);
+	StateModel getStateByName(String stateName);
 
-	public int getStateIdbyName(String stateName);
+	int getStateIdbyName(String stateName);
 
-	public boolean isStateDelete(String stateName);
+	boolean isStateDelete(String stateName);
 
-	public boolean isUpdateState(String oldName, String newName);
-	
-	public int getStateIdByCityName(String cityName);
+	boolean isUpdateState(String oldName, String newName);
+
+	int getStateIdByCityName(String cityName);
 
 }

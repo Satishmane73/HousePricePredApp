@@ -120,7 +120,7 @@ public class StateRepositoryImpl extends DBState implements StateRepository {
 				return rs.getInt(1);
 			else
 				return -1;
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 

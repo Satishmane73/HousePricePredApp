@@ -29,9 +29,16 @@ public class Query {
 
 	public static String getCityIdByName = "select cm.cityid from citymaster cm inner join citydistjoin cdj on cdj.cityid=cm.cityid where cm.cityname=? and cdj.stateid=? and cdj.distid=?";
 
+	public static String getCityByDistId = "select c.cityname, c.cityid from citymaster c inner join citydistjoin cdj on c.cityid=cdj.cityid inner join distmaster d on d.distid=cdj.distid where cdj.stateid=? and d.distid=?";
+
 	// Ward Related Query
 	public static String addNewWard = "{call saveward(?,?,?)}";
 
+	public static String getWardByCityName = "select wm.wardname from wardmaster wm inner join citywardjoin cwj on wm.wardid=cwj.wardid inner join citymaster cm on cm.cityid=cwj.cityid where cm.cityname=?";
+
+	public static String getWardIdByName = "select wardid from wardmaster where wardname=?";
+
 	// Aminity Related Query
 	public static String addNewAminity = "insert into aminities values('0',?)";
+
 }
