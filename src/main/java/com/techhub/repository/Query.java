@@ -38,7 +38,11 @@ public class Query {
 
 	public static String getWardIdByName = "select wardid from wardmaster where wardname=?";
 
-	// Aminity Related Query
+	// Amenity Related Query
 	public static String addNewAminity = "insert into aminities values('0',?)";
 
+	public static String getAllAminities = "select *from aminities order by aminityid";
+
+	// Property Related Query
+	public static String isAddNewProperty = "";
 }

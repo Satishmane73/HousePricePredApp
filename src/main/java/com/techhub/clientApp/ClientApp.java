@@ -6,10 +6,14 @@ import com.techhub.service.*;
 import org.apache.log4j.*;
 
 public class ClientApp {
+
+	// This count is used for giving numbering to the list of state and district
 	static int count;
 
+	// Scanner class object to take inputs from user
+	static Scanner scr = new Scanner(System.in);
+
 	public static void main(String[] args) {
-		Scanner scr = new Scanner(System.in);
 
 		StateService stateService = new StateServiceImpl();
 		StateModel stateModel = new StateModel();
@@ -25,6 +29,9 @@ public class ClientApp {
 
 		AminityService AminityService = new AminityServiceImpl();
 
+		PropertyService propService = new PropertyServiceImpl();
+
+		// this flag used to exit the application in case 9
 		boolean flag = true;
 
 		do {
@@ -48,7 +55,7 @@ public class ClientApp {
 					System.out.println("Enter a valid input");
 					scr.next();
 				}
-			}
+			} // while end
 			switch (choice) {
 
 // State ======================================================================================================			
@@ -134,10 +141,10 @@ public class ClientApp {
 					default:
 						System.out.println("Wrong input");
 						break;
-					}
+					}// case 1 switch block end
 
-				} while (exit);
-				break;
+				} while (exit);// case 1 do while end
+				break;// top level case 1 end
 
 // District ===================================================================================================
 			// This case for all District Related Services
@@ -253,9 +260,9 @@ public class ClientApp {
 					case 9:
 						exit = false;
 						break;
-					}
-				} while (exit);
-				break;
+					}// switch
+				} while (exit);// do while
+				break;// case 2 District
 
 // City ========================================================================================================
 			// This Case for all City Related Services
@@ -277,7 +284,7 @@ public class ClientApp {
 							System.out.println("Please enter valid input");
 							scr.next();
 						}
-					}
+					} // while
 					switch (ch) {
 
 					case 1:
@@ -301,18 +308,17 @@ public class ClientApp {
 						else
 							System.out.println("Something Went Wrong");
 
-						break;
+						break; // case 1
 
 					case 9:
 
 						exit = false;
 
-						break;
+						break; // case 9
 
-					}
-
-				} while (exit);
-				break;
+					}// switch
+				} while (exit);// do while
+				break;// Case 3 City
 // Ward ========================================================================================================
 			// This case for all ward related Services
 			case 4:
@@ -360,15 +366,16 @@ public class ClientApp {
 
 						break;
 					}
-				} while (exit);
-				break;
+				} while (exit);// do while
+				break;// Case 4 Ward
 
 //Amenities ==================================================================================================
+			// this case for all Amenities related services
 			case 5:
 				exit = true;
 				do {
 					System.out.println();
-					System.out.println("1 : Add new aminity");
+					System.out.println("1 : Add new amenity");
 					System.out.println("9 : exit");
 					System.out.println("Enter your choice");
 					int ch;
@@ -383,13 +390,13 @@ public class ClientApp {
 					}
 					switch (ch) {
 					case 1:
-						System.out.println("Enter new Aminity Name");
+						System.out.println("Enter new Amenity Name");
 						scr.nextLine();
 						String aminityName = scr.nextLine();
-						AminityModel aminityModel = new AminityModel(0, aminityName);
+						AminityModel aminityModel = new AminityModel(0, aminityName, 0);
 						b = AminityService.isAddNewAminity(aminityModel);
 						if (b)
-							System.out.println("New Aminity added Succesfully....");
+							System.out.println("New Amenity added Succesfully....");
 						else
 							System.out.println("Something went wrong");
 
@@ -400,13 +407,15 @@ public class ClientApp {
 					default:
 						System.out.println("Wrong Input");
 						break;
-					}
-				} while (exit);
-				break;
+					}// switch
+				} while (exit); // do while
+				break;// case 5 Amenity
 
 //Property =====================================================================================================
+			// this case for all property related services
 			case 6:
 				exit = true;
+				boolean response = false;
 				do {
 					System.out.println();
 					System.out.println("1 : Add new Property");
@@ -441,8 +450,7 @@ public class ClientApp {
 						} else {
 							System.out.println("There is no data");
 						}
-						
-						
+
 						System.out.println("Enter Dist name to add property");
 						String distName = scr.nextLine();
 						List<CityModel> cityList = cityService.getCitiesFromDist(stateName, distName);
@@ -450,8 +458,7 @@ public class ClientApp {
 							cityList.forEach((c) -> System.out.println(c.getCityId() + "\t" + c.getCityName()));
 						else
 							System.out.println("There is no data");
-						
-						
+
 						System.out.println("Enter city name to add property");
 						String cityName = scr.nextLine();
 						List<WardModel> wardList = wardService.getAllWardByCityName(cityName);
@@ -459,13 +466,53 @@ public class ClientApp {
 							wardList.forEach((w) -> System.out.println(w.getWardName()));
 						else
 							System.out.println("There is no data");
+						System.out.println("Enter ward name to get wardid");
+						String wardName = scr.nextLine();
+						int wardid = wardService.getWardIdByName(wardName);
+						System.out.println("Enter property name");
+						String pName = scr.nextLine();
+						System.out.println("Enter Property Address");
+						String pAdd = scr.nextLine();
+						System.out.println("Enter Property area in squar feet");
+						int areaSF = scr.nextInt();
+						System.out.println("Enter property price");
+						int pPrice = scr.nextInt();
+						wardModel = new WardModel();
+						wardModel.setWardId(wardid);
+						wardModel.setWardName(wardName);
+						System.out.println("--------------------------------");
+						System.out.println("Select Aminity");
+						List<AminityModel> aminityList = AminityService.getAllAminities();
+						aminityList
+								.forEach((am) -> System.out.println(am.getAminity_Id() + "\t" + am.getAminity_Name()));
+						List<AminityModel> amlist = new ArrayList<AminityModel>();
+
+						do {
+							System.out.println("Enter Aminity Name Which you want to purchase");
+							scr.nextLine();
+							String aminityName = scr.nextLine();
+							System.out.println("Do you want add another aminity");
+							String res = scr.nextLine();
+							AminityModel aminityModel = new AminityModel();
+							aminityModel.setAminity_Id(0);
+							aminityModel.setAminity_Name(aminityName);
+							aminityModel.setPrice(0);
+							amlist.add(aminityModel);
+
+							if (res.equals("yes") || res.equals("Yes"))
+								response = true;
+							else
+								response = false;
+						} while (response);
+						PropertyModel PropModel = new PropertyModel(wardModel, 0, pName, pAdd, pPrice, areaSF, amlist);
+						b = propService.isAddNewProperty(PropModel);
 						break;
 					case 9:
 						exit = false;
 						break;
-					}
+					}// switch
 				} while (exit);
-				break;
+				break;// Case 6 Property
 
 			case 9:
 				scr.close();
@@ -475,8 +522,8 @@ public class ClientApp {
 			default:
 				System.out.println("Wrong Input");
 				break;
-			}
+			}// Switch
 
-		} while (flag);
-	}
+		} while (flag);// do while
+	}// main
 }

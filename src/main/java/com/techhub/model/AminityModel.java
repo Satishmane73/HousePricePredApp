@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 public class AminityModel {
 	private int aminity_Id;
 	private String aminity_Name;
+	private int price;
 }

@@ -1,5 +1,7 @@
 package com.techhub.service;
 
+import java.util.List;
+
 import com.techhub.model.AminityModel;
 import com.techhub.repository.*;
 
@@ -12,4 +14,9 @@ public class AminityServiceImpl implements AminityService {
 		return repo.isAddNewAminity(model);
 	}
 
+	@Override
+	public List<AminityModel> getAllAminities() {
+		// TODO Auto-generated method stub
+		return repo.getAllAminities();
+	}
 }
